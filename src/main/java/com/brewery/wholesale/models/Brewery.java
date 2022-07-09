@@ -7,8 +7,11 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "Brewery", catalog = "SNDTmgluQz")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Brewery implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
