@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.brewery.wholesale.api.rest.response.ResponseHandler;
 import com.brewery.wholesale.dto.BeerDto;
 import com.brewery.wholesale.models.Beer;
+import com.brewery.wholesale.models.Brewery;
 import com.brewery.wholesale.services.BeerService;
 import com.brewery.wholesale.services.BreweryService;
 import com.brewery.wholesale.utils.Constants;
@@ -35,7 +36,7 @@ public class BeerRestController {
 	private ModelMapper mapper = new ModelMapper();
 
 	/**
-	 * FN1 retrieve all beers by brewer
+	 * FR1 retrieve all beers by brewer
 	 * 
 	 * @return list of beers
 	 */
@@ -50,23 +51,25 @@ public class BeerRestController {
 	}
 
 	/**
-	 * FN2 Add new beer by existing brewer
+	 * FR2 Add new beer by existing brewer
 	 * 
 	 * @param beerDto, entity to be saved
 	 * @return the saved entity
 	 */
 	@PostMapping("/save")
 	public ResponseEntity<Object> saveBeerByBrewer(@RequestBody BeerDto beerDto) {
-		if (Boolean.TRUE.equals(breweryService.exist(beerDto.getBreweryId()))) {
+		Optional<Brewery> brewery = breweryService.findById(beerDto.getBreweryId());
+
+		if (brewery.isPresent()) {
 			return ResponseHandler.generateResponse(Constants.DATA_SUCCESSFULLY_INSERTED, HttpStatus.CREATED,
 					beerService.save(mapper.map(beerDto, Beer.class)));
 		} else {
-			return ResponseHandler.generateResponse(Constants.ERR_BREWERY_NOT_EXIST, HttpStatus.NOT_FOUND, null);
+			return ResponseHandler.generateResponse(Constants.ERR_BREWERY_MUST_EXIST, HttpStatus.NOT_FOUND, null);
 		}
 	}
 
 	/**
-	 * FN3 Delete a beer by brewer
+	 * FR3 Delete a beer by brewer
 	 * 
 	 * @param id, brewer id
 	 * @return HttpStatus
@@ -78,7 +81,7 @@ public class BeerRestController {
 			beerService.deleteById(id);
 			return ResponseHandler.generateResponse(Constants.DATA_SUCCESSFULLY_DELETED, HttpStatus.ACCEPTED, null);
 		} else {
-			return ResponseHandler.generateResponse(Constants.ERR_BEER_NOT_EXIST, HttpStatus.NOT_FOUND, null);
+			return ResponseHandler.generateResponse(Constants.ERR_BEER_MUST_EXIST, HttpStatus.NOT_FOUND, null);
 		}
 	}
 

@@ -41,20 +41,20 @@ public class BeerRestControllerTests {
 	private BeerRestController beerRestController;
 
 	Optional<Beer> beer = Optional.ofNullable(new Beer());
-	Brewery brewery = new Brewery();
+	Optional<Brewery> brewery = Optional.ofNullable(new Brewery());
 
 	@Before
 	public void setUp() {
 		mockMvc = MockMvcBuilders.standaloneSetup(beerRestController).build();
 
-		brewery.setId(99);
-		brewery.setName("Brewery test");
+		brewery.get().setId(99);
+		brewery.get().setName("Brewery test");
 
 		beer.get().setId(999);
 		beer.get().setName("Beer test");
 		beer.get().setAlcoholContent((float) 6.6);
 		beer.get().setPrice((float) 5.5);
-		beer.get().setBrewery(brewery);
+		beer.get().setBrewery(brewery.get());
 
 	}
 
@@ -80,7 +80,7 @@ public class BeerRestControllerTests {
 		String jsonString = "{\r\n" + "    \"name\":\"Beer test\",\r\n" + "    \"alcoholContent\":6.6,\r\n"
 				+ "    \"price\":2.20,\r\n" + "    \"breweryId\":99\r\n" + "}";
 
-		Mockito.when(breweryService.exist(99)).thenReturn(true);
+		Mockito.when(breweryService.findById(99)).thenReturn(brewery);
 		Mockito.when(beerService.save(beer.get())).thenReturn(beer.get());
 
 		MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/api/beers/save")
@@ -94,7 +94,6 @@ public class BeerRestControllerTests {
 		String jsonString = "{\r\n" + "    \"name\":\"Beer test\",\r\n" + "    \"alcoholContent\":6.6,\r\n"
 				+ "    \"price\":2.20,\r\n" + "    \"breweryId\":99\r\n" + "}";
 
-		Mockito.when(breweryService.exist(99)).thenReturn(false);
 		Mockito.when(beerService.save(beer.get())).thenReturn(beer.get());
 
 		MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/api/beers/save")
