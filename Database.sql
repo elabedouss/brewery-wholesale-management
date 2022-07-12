@@ -2,6 +2,8 @@
 -- Database: `SNDTmgluQz`
 --
 
+CREATE DATABASE SNDTmgluQz;
+USE SNDTmgluQz;
 -- --------------------------------------------------------
 
 --
@@ -9,7 +11,7 @@
 --
 
 CREATE TABLE `Beer` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL primary key auto_increment,
   `name` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
   `alcoholContent` float NOT NULL,
   `price` float NOT NULL,
@@ -30,7 +32,7 @@ INSERT INTO `Beer` (`id`, `name`, `alcoholContent`, `price`, `breweryId`) VALUES
 --
 
 CREATE TABLE `Brewery` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL primary key auto_increment,
   `name` varchar(250) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -48,7 +50,7 @@ INSERT INTO `Brewery` (`id`, `name`) VALUES
 --
 
 CREATE TABLE `Wholesaler` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL primary key auto_increment,
   `name` varchar(250) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -109,19 +111,19 @@ ALTER TABLE `WholesalerStock`
 -- AUTO_INCREMENT for table `Beer`
 --
 ALTER TABLE `Beer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `Brewery`
 --
 ALTER TABLE `Brewery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `Wholesaler`
 --
 ALTER TABLE `Wholesaler`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- Constraints for dumped tables

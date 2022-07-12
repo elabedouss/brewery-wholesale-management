@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "Beer", catalog = "SNDTmgluQz")
+@Table(name = "beer", catalog = "sndtmgluqz")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Beer implements java.io.Serializable {
 

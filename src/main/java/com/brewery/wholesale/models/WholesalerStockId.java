@@ -4,16 +4,16 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class WholesalerStockId implements java.io.Serializable {
+public class WholesalerstockId implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private int wholesalerId;
 	private int beerId;
 
-	public WholesalerStockId() {
+	public WholesalerstockId() {
 	}
 
-	public WholesalerStockId(int wholesalerId, int beerId) {
+	public WholesalerstockId(int wholesalerId, int beerId) {
 		this.wholesalerId = wholesalerId;
 		this.beerId = beerId;
 	}
@@ -41,9 +41,9 @@ public class WholesalerStockId implements java.io.Serializable {
 			return true;
 		if ((other == null))
 			return false;
-		if (!(other instanceof WholesalerStockId))
+		if (!(other instanceof WholesalerstockId))
 			return false;
-		WholesalerStockId castOther = (WholesalerStockId) other;
+		WholesalerstockId castOther = (WholesalerstockId) other;
 
 		return (this.getWholesalerId() == castOther.getWholesalerId()) && (this.getBeerId() == castOther.getBeerId());
 	}
