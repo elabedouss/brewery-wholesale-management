@@ -41,8 +41,6 @@ public class ClientOrderRestController {
 
 	@PostMapping("/order")
 	public ResponseEntity<Object> getOrderBeers(@RequestBody OrderDto orderDto) {
-		Optional<Beer> beer = Optional.empty();
-		Optional<Wholesalerstock> wholesalerstock = Optional.empty();
 		Optional<Wholesaler> wholesaler = wholesalerService.findById(orderDto.getWholesalerId());
 
 		if (!wholesaler.isPresent()) {
@@ -52,12 +50,12 @@ public class ClientOrderRestController {
 				if (orderedBeerDto.getQuantity() == 0) {
 					return ResponseHandler.generateResponse(Constants.ERR_EMPTY_ORDER, HttpStatus.BAD_REQUEST, null);
 				} else {
-					beer = this.beerService.findById(orderedBeerDto.getBeerId());
+					Optional<Beer> beer = this.beerService.findById(orderedBeerDto.getBeerId());
 					if (!beer.isPresent()) {
 						return ResponseHandler.generateResponse(Constants.ERR_BEER_MUST_EXIST, HttpStatus.BAD_REQUEST,
 								null);
 					} else {
-						wholesalerstock = wholesalerStockService.findById(
+						Optional<Wholesalerstock> wholesalerstock = wholesalerStockService.findById(
 								new WholesalerstockId(orderDto.getWholesalerId(), orderedBeerDto.getBeerId()));
 
 						if (wholesalerstock.isPresent()
