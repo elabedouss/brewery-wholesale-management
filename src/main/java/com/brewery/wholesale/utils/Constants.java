@@ -1,6 +1,7 @@
 package com.brewery.wholesale.utils;
 
 public class Constants {
+
 	public static final float DISCOUNT_ABOVE_TEN_BEERS = (float) 0.1;
 	public static final float DISCOUNT_ABOVE_TWENTY_BEERS = (float) 0.2;
 
@@ -19,5 +20,8 @@ public class Constants {
 	public static final String DATA_SUCCESSFULLY_DELETED = "Data successfully deleted";
 
 	public static final String EMPTY_DATA = "Empty data";
+
+	private Constants() {
+	}
 
 }

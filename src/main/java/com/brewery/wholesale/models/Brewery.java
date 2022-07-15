@@ -21,10 +21,6 @@ public class Brewery implements java.io.Serializable {
 	public Brewery() {
 	}
 
-	public Brewery(String name) {
-		this.name = name;
-	}
-
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 

@@ -21,10 +21,6 @@ public class Wholesaler implements java.io.Serializable {
 	public Wholesaler() {
 	}
 
-	public Wholesaler(String name) {
-		this.name = name;
-	}
-
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
