@@ -1,4 +1,4 @@
 # brewery-wholesale-management
 
 
-[![Build](https://github.com/elabedouss/brewery-wholesale-management/actions/workflows/build.yml/badge.svg)](https://github.com/elabedouss/brewery-wholesale-management/actions/workflows/build.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=com.management.system%3Abrewery-wholesale&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=com.management.system%3Abrewery-wholesale)
