@@ -72,7 +72,7 @@ public class ClientOrderRestController {
 		if (!clientOrderService.checkDuplicate(orderDto.getOrderedBeers())) {
 			return ResponseHandler.generateResponse(Constants.ERR_DUPLICATE_ORDER, HttpStatus.BAD_REQUEST, null);
 		} else {
-			return ResponseHandler.generateResponse(Constants.DATA_SUCCESSFULLY_RETREIVED, HttpStatus.BAD_REQUEST,
+			return ResponseHandler.generateResponse(Constants.DATA_SUCCESSFULLY_RETREIVED, HttpStatus.OK,
 					clientOrderService.getTotalPrice(orderDto));
 		}
 	}
